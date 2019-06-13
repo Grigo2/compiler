@@ -17,17 +17,21 @@ int yyerror(const char *msg,...);
 \)			{return ')';}
 \[			{return '[';}
 \]			{return ']';}
+\{			{return '{';}
+\}			{return '}';}
 \;			{yylineno++;return ';';}
 \n			{;}
 \ |\t			{;}
 \<\=			{return LEQ;}
 \>\=			{return GEQ;}
+\=\=		{return EQ;}
+\!\=		{return NEQ;}
 "START"     {return    START;}
 "INTEGER"   {fprintf(yyout, "int\n"); return    INTEGER;}
 "DOUBLE"    {fprintf(yyout, "double\n");return    DOUBLE;}
 "IF"        {return    IF;}
-"FI"        {return    FI;}
 "SHOW"      {return    SHOW;}
+"READ"		{return    READ;}
 "WHILE"	 	{return    WHILE;}
 "END"		{return    END;}
 "ARRAY"		{return    ARRAY;}
@@ -43,4 +47,5 @@ int yyerror(const char *msg,...)
 	printf("%d: %s", yylineno, msg);
 	exit(1);
 }
+
 
